@@ -19,21 +19,42 @@ funding = ['Contractual','Contractual','BoE','BoE','BoE','BoE','BoE','BoE','BoE'
            'Grant Funded','Grant Funded','BoE','BoE','BoE','BoE','BoE','BoE','BoE','BoE',
            'BoE','BoE','Family Leauge','BoE','Grant Funded','BCF' ]
 
+program = ['Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Place4Purpose','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Fellowship','Place4Purpose','Place4Purpose','Place4Purpose','Place4Purpose',
+           'Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Fellowship','Fellowship','Fellowship','Fellowship','Fellowship','Fellowship',
+           'Place4Purpose','Place4Purpose','Place4Purpose','Place4Purpose']
+
 year = [2014,2014,2015,2015,2015,2015,2015,2015,2015,2015,2016,2016,2016,2016,2016,2016,
         2016,2016,2016,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,
         2017,2017,2017,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,
         2018,2018,2018]
 
 datetime_year = pd.to_datetime(year, format='%Y')
-
 dframe = pd.DataFrame(agency, index=datetime_year, columns=['agency'])
 dframe['funding'] = funding
-dframe['avg_stipend'] = 44000
-dframe['fringe'] = dframe['avg_stipend'] * .22
+dframe['program'] = program
+
+avg_stipend =  (np.where(dframe.index == pd.to_datetime('2014'),32000,
+                np.where(dframe.index == pd.to_datetime('2015'),33000,
+                np.where((dframe.index == pd.to_datetime('2016')) & (dframe['program'] == 'Fellowship'),38112.50,
+                np.where((dframe.index == pd.to_datetime('2016')) & (dframe['program'] == 'Place4Purpose'),60000,
+                np.where((dframe.index == pd.to_datetime('2017')) & (dframe['program'] == 'Fellowship'),40465.33,
+                np.where((dframe.index == pd.to_datetime('2017')) & (dframe['program'] == 'Place4Purpose'),38750,
+                np.where((dframe.index == pd.to_datetime('2018')) & (dframe['program'] == 'Fellowship'),39666.67,
+                np.where((dframe.index == pd.to_datetime('2018')) & (dframe['program'] == 'Place4Purpose'),64600,None)))))))))
+
+## use average stipend for each program for the fellow stipend ## 
+dframe['stipend'] = avg_stipend
+dframe['fringe'] = dframe['stipend'] * .22
 dframe['unemployment'] = 1000
 dframe['BaltCorps_fee'] = 2000
 dframe['StrongCity_fee'] = 2000
-dframe['fellow_cost'] = (dframe['avg_stipend'] + dframe['fringe'] + dframe['unemployment'] + 
+dframe['fellow_cost'] = (dframe['stipend'] + dframe['fringe'] + dframe['unemployment'] + 
                          dframe['BaltCorps_fee'] + dframe['StrongCity_fee'])
 
 
