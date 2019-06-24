@@ -38,8 +38,6 @@ datetime_year = pd.to_datetime(year, format='%Y')
 dframe = pd.DataFrame(agency, index=datetime_year, columns=['agency'])
 dframe['funding'] = funding
 dframe['program'] = program
-dframe['fellows_count'] = dframe.groupby([dframe.index, 'agency'])['agency'].transform('count')
-
 
 avg_stipend =  (np.where(dframe.index == pd.to_datetime('2014'),32000,
                 np.where(dframe.index == pd.to_datetime('2015'),33000,
@@ -59,6 +57,7 @@ dframe['StrongCity_fee'] = 2000
 dframe['fellow_cost'] = (dframe['stipend'] + dframe['fringe'] + dframe['unemployment'] + 
                          dframe['BaltCorps_fee'] + dframe['StrongCity_fee'])
 
-
+dframe['fellows_count'] = dframe.groupby([dframe.index, 'agency'])['agency'].transform('count')
+dframe['annual_spending_by_agency'] = dframe.groupby([dframe.index, dframe['agency']])['fellow_cost'].transform('sum')
 
 
