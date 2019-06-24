@@ -36,6 +36,7 @@ year = [2014,2014,2015,2015,2015,2015,2015,2015,2015,2015,2016,2016,2016,2016,20
 
 datetime_year = pd.to_datetime(year, format='%Y')
 dframe = pd.DataFrame(agency, index=datetime_year, columns=['agency'])
+dframe['year'] = dframe.index.year
 dframe['funding'] = funding
 dframe['program'] = program
 
