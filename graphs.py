@@ -42,7 +42,9 @@ def total_spending_volume(dframe=dframe):
 
     layout = {
         'legend':{'orientation':'v'},
-        'title':'Something',
+        'title':'Fellows Volume & Spending',
+        'plot_bgcolor': '#bdbdbd',
+        'paper_bgcolor': '#bdbdbd',
         'yaxis': {'title':'Fellowship Spending'},
         'yaxis2':{'title':'No. Fellows',
                  'titlefont':{'color':'darkgrey'},
@@ -116,6 +118,8 @@ def usage_distribution_across_agencies(dframe=dframe):
         'layout': {
         'title':'2014--2019 Fellowship Distribution<br>Utilization by Agency & Funding Type',
         'hovermode':'closest',
+        'plot_bgcolor': '#bdbdbd',
+        'paper_bgcolor': '#bdbdbd',
         'annotations': [
             {
                 'font':{'size':12,
@@ -201,6 +205,8 @@ def cost_components(dframe=dframe):
         'layout': {
             'title':'Fellowship Cost Components',
             'hovermode': 'closest',
+            'paper_bgcolor': '#bdbdbd',
+            'plot_bgcolor': '#bdbdbd',
             'annotations': [
                 {
                     'font':{'size':12,
@@ -270,6 +276,8 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
         'layout': {
             'title': 'Fellowship Use & Cost Overtime: Agency Level',
             'hovermode':'closest',
+            'paper_bgcolor': '#bdbdbd',
+            'plot_bgcolor': '#bdbdbd',
             'barmode': 'stack',
             'xaxis':{'nticks':dframe.index.nunique()},
             'legend':{'orientation':'v'},
