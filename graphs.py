@@ -111,34 +111,41 @@ def usage_distribution_across_agencies(dframe=dframe):
         'hovermode':'closest',
         'annotations': [
             {
-                'font':{'size':12},
+                'font':{'size':12,
+                       'color':'darkgrey'},
                 'showarrow':False,
                 'text':'{} Agencies<br>${:,.0f}'.format(dframe['agency'].nunique(),
                                                         dframe['fellow_cost'].sum()),
-                'x':.197,
-                'y':.5
+                'x':1.35,
+                'y':0.5,
+                'xref': 'paper',
+                'yref': 'paper'
             },
             {
                 'font':{'size':12},
                 'showarrow':False,
                 'text':'<b>Placements</b>',
-                'x':.10,
-                'y':1.1
+                'x':.045,
+                'y':.91
             },
             {
                 'font':{'size':12},
                 'showarrow':False,
                 'text':'<b>Funding</b>',
-                'x':.88,
-                'y':1.1
+                'x':.95,
+                'y':.91,
+                'xref': 'paper',
+                'yref': 'paper'
             },
             {
                     'font':{'size':12,
                            'color':'darkgrey'},
                     'showarrow':False,
                     'text': '<b>Source:</b> Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
+                    'xref': 'paper',
+                    'yref': 'paper',
                     'x':.5,
-                    'y':-.4}
+                    'y':-.1}
                         ]}
     }
 
@@ -183,26 +190,23 @@ def cost_components(dframe=dframe):
              'hoverinfo':'text+percent'
             }],
         'layout': {
+            'title':'Fellowship Cost Components',
             'hovermode': 'closest',
             'annotations': [
                 {
-                    'font':{'size':12},
-                    'showarrow':False,
-                    'text': '<b>Fellowship Cost Components</b>',
-                    'x':.94,
-                    'y':.9},
-                {
-                    'font':{'size':12},
+                    'font':{'size':12,
+                           'color':'darkgrey'},
                     'showarrow':False,
                     'text': '5yr Fees: ${:,.0f}'.format(dframe['BaltCorps_fee'].sum() + dframe['StrongCity_fee'].sum()),
-                    'x':.94,
-                    'y':.8},
+                    'x':1.35,
+                    'y':.4},
                 {
-                    'font':{'size':12},
+                    'font':{'size':12,
+                           'color':'darkgrey'},
                     'showarrow':False,
                     'text': '5yr OPCs: ${:,.0f}'.format(dframe['fringe'].sum() + dframe['unemployment'].sum()),
-                    'x':.94,
-                    'y':.7},
+                    'x':1.35,
+                    'y':.3},
                 {
                     'font':{'size':12,
                            'color':'darkgrey'},
@@ -277,6 +281,6 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
 
 
 chart1 = total_spending_volume()
-chart2 = usage_distribution_across_agencies()
-chart3 = cost_components()
+chart2 = cost_components()
+chart3 = usage_distribution_across_agencies()
 chart4 = utilization_changes_overtime_by_agency()
