@@ -28,13 +28,14 @@ def total_spending_volume(dframe=dframe):
     trace1 = go.Bar(
         x = dframe.groupby(dframe.index)['fellow_cost'].sum().index,
         y = dframe.groupby(dframe.index)['fellow_cost'].sum().values,
-        name = 'Spending'
+        name = 'Spending',
+        marker = {'color': '#08519c'}
     )
     trace2 = go.Scatter(
         x = dframe.groupby(dframe.index)['agency'].count().index,
         y = dframe.groupby(dframe.index)['agency'].count().values,
         name = 'Fellows',
-        line = {'color':'darkgrey',
+        line = {'color':'#636363',
                'width':4,
                'dash':'dash'},
         yaxis = 'y2'
@@ -45,10 +46,16 @@ def total_spending_volume(dframe=dframe):
         'title':'Fellows Volume & Spending',
         'plot_bgcolor': '#bdbdbd',
         'paper_bgcolor': '#bdbdbd',
-        'yaxis': {'title':'Fellowship Spending'},
+        'yaxis': {'title':'Fellowship Spending',
+                 'showgrid': False,
+                  'zeroline': False,
+                 'titlefont': {'color': '#08519c'},
+                 'tickfont' : {'color': '#08519c'}},
         'yaxis2':{'title':'No. Fellows',
-                 'titlefont':{'color':'darkgrey'},
-                 'tickfont':{'color':'darkgrey'},
+                  'showgrid':False,
+                  'zeroline':False,
+                 'titlefont':{'color':'#636363'},
+                 'tickfont':{'color':'#636363'},
                  'overlaying':'y',
                  'side':'right'},
         'xaxis': {'tickmode':'auto',
@@ -123,7 +130,7 @@ def usage_distribution_across_agencies(dframe=dframe):
         'annotations': [
             {
                 'font':{'size':12,
-                       'color':'darkgrey'},
+                       'color':'#636363'},
                 'showarrow':False,
                 'text':'{} Agencies<br>${:,.0f}'.format(dframe['agency'].nunique(),
                                                         dframe['fellow_cost'].sum()),
@@ -210,14 +217,14 @@ def cost_components(dframe=dframe):
             'annotations': [
                 {
                     'font':{'size':12,
-                           'color':'darkgrey'},
+                           'color':'#636363'},
                     'showarrow':False,
                     'text': '5yr Fees: ${:,.0f}'.format(dframe['BaltCorps_fee'].sum() + dframe['StrongCity_fee'].sum()),
                     'x':1.35,
                     'y':.4},
                 {
                     'font':{'size':12,
-                           'color':'darkgrey'},
+                           'color':'#636363'},
                     'showarrow':False,
                     'text': '5yr OPCs: ${:,.0f}'.format(dframe['fringe'].sum() + dframe['unemployment'].sum()),
                     'x':1.35,
@@ -257,8 +264,11 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
     """
     
     traces = []
+    placement_colors = ['#67001f','#b2182b','#d6604d','#f4a582',
+                        '#fddbc7','#f7f7f7','#d1e5f0','#92c5de',
+                       '#4393c3','#2166ac','#053061']
 
-    for agncy in dframe['agency'].unique():
+    for agncy, color in zip(dframe['agency'].unique(), placement_colors):
         traces.append(go.Bar(
             x = (dframe[dframe['agency'] == agncy].
                  groupby(dframe[dframe['agency'] == agncy].
@@ -267,6 +277,7 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
                  groupby(dframe[dframe['agency'] == agncy].
                          index)['fellows_count'].mean().values),
             name = agncy,
+            marker = {'color': color}
 
 
         ))
@@ -279,6 +290,8 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
             'paper_bgcolor': '#bdbdbd',
             'plot_bgcolor': '#bdbdbd',
             'barmode': 'stack',
+            'yaxis':{'showgrid':False,
+                    'zeroline':False},
             'xaxis':{'nticks':dframe.index.nunique()},
             'legend':{'orientation':'v'},
             'annotations':[
