@@ -87,11 +87,17 @@ def usage_distribution_across_agencies(dframe=dframe):
     >>> usage_distribution_across_agencies()  # returns chart figure
     """ 
     
+    funding_colors = ['#6baed6','#3182bd','#08519c','#bdd7e7']
+    placement_colors = ['#67001f','#b2182b','#d6604d','#f4a582',
+                        '#fddbc7','#f7f7f7','#d1e5f0','#92c5de',
+                       '#4393c3','#2166ac','#053061']
+    
     fig = {
         'data':[
             {
                 'hole':.5,
                 'labels': dframe.groupby('agency')['fellow_cost'].sum().index,
+                'marker':{'colors': placement_colors},
                 'showlegend':False,
                 'type':'pie',
                 'domain':{'x': [0, .48]},
@@ -100,6 +106,7 @@ def usage_distribution_across_agencies(dframe=dframe):
             {
                 'hole':.5,
                 'labels': dframe.groupby('funding')['fellow_cost'].sum().index,
+                'marker': {'colors': funding_colors},
                 'showlegend':True,
                 'type':'pie',
                 'domain':{'x':[.52, 1]},
@@ -170,7 +177,8 @@ def cost_components(dframe=dframe):
     >>> cost_components()  # returns chart figure
     """
     
-    labels = ['stipend','fringe','unemployment','BaltCorps_fee','StrongCity_fee']
+    labels = ['fringe','unemployment','BaltCorps_fee','StrongCity_fee','stipend']
+    colors = ['#eff3ff','#bdd7e7','#6baed6','#3182bd','#08519c']
     values = []
     for label in labels:
         values.append(dframe[label].sum())
@@ -183,6 +191,7 @@ def cost_components(dframe=dframe):
         'data':[
             {'labels': labels,
             'values': values,
+             'marker': {'colors': colors},
              'name': 'cost components',
              'hole': .4,
              'type': 'pie',
