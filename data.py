@@ -61,4 +61,4 @@ dframe['fellow_cost'] = (dframe['stipend'] + dframe['fringe'] + dframe['unemploy
 dframe['fellows_count'] = dframe.groupby([dframe.index, 'agency'])['agency'].transform('count')
 dframe['annual_spending_by_agency'] = dframe.groupby([dframe.index, dframe['agency']])['fellow_cost'].transform('sum')
 
-
+dframe = dframe[dframe['agency'] != 'BCPS'] # remove school system 
