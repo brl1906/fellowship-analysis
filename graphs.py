@@ -41,7 +41,7 @@ def total_spending_volume(dframe=dframe):
     )
 
     layout = {
-        'legend':{'orientation':'h'},
+        'legend':{'orientation':'v'},
         'title':'Something',
         'yaxis': {'title':'Fellowship Spending'},
         'yaxis2':{'title':'No. Fellows',
@@ -56,7 +56,7 @@ def total_spending_volume(dframe=dframe):
                     'font':{'size':12,
                            'color':'darkgrey'},
                     'showarrow':False,
-                    'text': 'Source: Data Provided by Baltimore Corps June 2019: https://github.com/brl1906/fellowship-analysis',
+                    'text': '<b>Source:</b> Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
                     'xref':'paper',
                     'yref':'paper',
                     'x':.98,
@@ -136,7 +136,7 @@ def usage_distribution_across_agencies(dframe=dframe):
                     'font':{'size':12,
                            'color':'darkgrey'},
                     'showarrow':False,
-                    'text': 'Source: Data Provided by Baltimore Corps June 2019: https://github.com/brl1906/fellowship-analysis',
+                    'text': '<b>Source:</b> Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
                     'x':.5,
                     'y':-.4}
                         ]}
@@ -207,7 +207,7 @@ def cost_components(dframe=dframe):
                     'font':{'size':12,
                            'color':'darkgrey'},
                     'showarrow':False,
-                    'text': 'Source: Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
+                    'text': '<b>Source:</b> Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
                     'x':.5,
                     'y':-.2},
 
@@ -265,7 +265,7 @@ def utilization_changes_overtime_by_agency(dframe=dframe):
                     'font':{'size':12,
                            'color':'darkgrey'},
                     'showarrow':False,
-                    'text': 'Source: Data Provided by Baltimore Corps June 2019: https://github.com/brl1906/fellowship-analysis',
+                    'text': '<b>Source:</b> Data Provided by Baltimore Corps June 2019:<br>https://github.com/brl1906/fellowship-analysis',
                     'xref':'paper',
                     'yref':'paper',
                     'x':.5,
