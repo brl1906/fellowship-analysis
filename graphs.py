@@ -1,5 +1,5 @@
 """Module for creating charts to support analysis of fellowship data.
-Created 6/25/2019  by Babila Lima"""
+Created 6/25/2019  author:  Babila Lima"""
 
 from data import dframe 
 import pandas as pd

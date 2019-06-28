@@ -1,5 +1,6 @@
 """Module captures and formats the data provided by Baltimore Corps on fellowship use throughout the City. Provides a data variable to make the information available as an import to other modules in project for analysis. 
-Created 6-22-2019  by Babila R. Lima
+
+Created 6-22-2019    author: Babila R. Lima
 """
 
 import numpy as np
